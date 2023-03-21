@@ -65,9 +65,12 @@ const MenuKasir = () => {
         {data.map((item, i) => (
           <View key={i}>
             <Rows c_Style={styles.listCard}>
-              <TouchableOpacity onPress={()=> navigation.navigate('DetailsMenuKasir', {
-                menuId: item.id
-              })}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('DetailsMenuKasir', {
+                    menuId: item.id,
+                  })
+                }>
                 <Text style={styles.listMenu}>{item.name}</Text>
               </TouchableOpacity>
               <Rows

@@ -74,7 +74,7 @@ const DetailsMenuKasir = ({route}) => {
           <Text>{data.name}</Text>
           <Text>{data.harga}</Text>
           <Text>{data.description}</Text>
-          <Text>{data.categorys.name}</Text>
+          <Text>{data.categorys? data.categorys.name : data.category}</Text>
         </Column>
       </Templates>
     </View>

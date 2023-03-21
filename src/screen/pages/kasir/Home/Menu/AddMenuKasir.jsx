@@ -11,7 +11,6 @@ import {
   Space,
 } from '../../../../../components';
 import {auth, baseCategory, baseMenu} from '../../../../../utils';
-import Logo from './../../../../../assets';
 
 const AddMenuKasir = () => {
   const [name, setName] = useState('');
