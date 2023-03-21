@@ -56,9 +56,10 @@ const DetailsMenuKasir = ({route}) => {
               resizeMode="contain"
             />
           ) : (
-            <Column c_Style={{
-              alignItems:'center'
-            }}>
+            <Column
+              c_Style={{
+                alignItems: 'center',
+              }}>
               <Image
                 source={Question}
                 style={{
@@ -71,10 +72,35 @@ const DetailsMenuKasir = ({route}) => {
           )}
         </View>
         <Column>
-          <Text>{data.name}</Text>
-          <Text>{data.harga}</Text>
-          <Text>{data.description}</Text>
-          <Text>{data.categorys? data.categorys.name : data.category}</Text>
+          <Text
+            style={{
+              fontSize: 28,
+              fontWeight: 'bold',
+              color: 'black',
+              paddingVertical: 10,
+            }}>
+            {data.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 18,
+              color: 'red',
+              fontWeight: 'bold',
+            }}>
+            {data.harga}
+          </Text>
+          <Text
+            style={{
+              color: 'black',
+            }}>
+            Description : {data.description}
+          </Text>
+          <Text
+            style={{
+              color: 'black',
+            }}>
+            Category : {data.categorys ? data.categorys.name : data.category}
+          </Text>
         </Column>
       </Templates>
     </View>
