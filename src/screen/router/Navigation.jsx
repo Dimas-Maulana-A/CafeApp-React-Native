@@ -31,6 +31,7 @@ import {
   EditMenuKasir,
   DetailsMenuKasir,
   HistoryTransKasir,
+  DetailsHistoryKasir,
   CategoryMenuKasir,
   AddCategoryMenuKasir,
   EditCategoryMenuKasir,
@@ -165,6 +166,14 @@ function StackNavigation() {
           component={HistoryTransKasir}
           options={{
             title: 'History',
+          }}
+        />
+
+        <Stack.Screen
+          name="DetailsHistoryKasir"
+          component={DetailsHistoryKasir}
+          options={{
+            title: 'Details',
           }}
         />
 

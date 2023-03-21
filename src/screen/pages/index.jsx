@@ -15,6 +15,7 @@ import ReportKasir from "./kasir/Profile/ReportKasir";
 import DetailsTranscOnProcessKasir from "./kasir/Transc/DetailsTranscOnProcessKasir";
 
 import HistoryTransKasir from "./kasir/Home/History/HistoryTransKasir";
+import DetailsHistoryKasir from "./kasir/Home/History/DetailsHistoryKasir";
 
 import MenuKasir from "./kasir/Home/Menu/MenuKasir";
 import AddMenuKasir from "./kasir/Home/Menu/AddMenuKasir";
@@ -38,6 +39,7 @@ export {
     DetailsTranscOnProcessKasir,
 
     HistoryTransKasir,
+    DetailsHistoryKasir,
 
     MenuKasir,
     AddMenuKasir,
