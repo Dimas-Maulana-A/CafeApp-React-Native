@@ -1,18 +1,101 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {StyleSheet, Text, View, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useIsFocused} from '@react-navigation/native';
 
-import { auth, baseMenu } from '../../../../../utils'
-import { Templates, Column, Rows, PrimaryButtons } from '../../../../../components'
+import {auth, baseMenu} from '../../../../../utils';
+import {Question} from '../../../../../assets';
+import {
+  Templates,
+  Column,
+  Rows,
+  PrimaryButtons,
+} from '../../../../../components';
 
 const DetailsMenuKasir = ({route}) => {
-  const {menuId} = route.params
+  const [data, setData] = useState('');
+  const [image, setImage] = useState('');
+  const {menuId} = route.params;
+  const focused = useIsFocused();
+
+  useEffect(() => {
+    handleGetData();
+  }, [focused]);
+
+  const handleGetData = () => {
+    auth
+      .get(baseMenu + menuId)
+      .then(async result => {
+        const datas = result.data.data;
+        setData(result.data.data);
+        console.log(result.data);
+        auth
+          .get(baseMenu + 'image/' + datas.image)
+          .then(result => {
+            setImage(true);
+          })
+          .catch(err => {
+            setImage(false);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
-    <View>
-      <Text>{menuId}</Text>
+    <View style={styles.Container}>
+      <Templates m_Horizontal={'5%'} m_Vertical={'5%'}>
+        <View style={styles.Content}>
+          {image ? (
+            <Image
+              source={{uri: baseMenu + 'image/' + data.image}}
+              style={{
+                height: '100%',
+                width: '100%',
+              }}
+              resizeMode="contain"
+            />
+          ) : (
+            <Column c_Style={{
+              alignItems:'center'
+            }}>
+              <Image
+                source={Question}
+                style={{
+                  tintColor: 'silver',
+                }}
+                resizeMode="contain"
+              />
+              <Text>Image Not Found</Text>
+            </Column>
+          )}
+        </View>
+        <Column>
+          <Text>{data.name}</Text>
+          <Text>{data.harga}</Text>
+          <Text>{data.description}</Text>
+          <Text>{data.categorys.name}</Text>
+        </Column>
+      </Templates>
     </View>
-  )
-}
+  );
+};
 
-export default DetailsMenuKasir
+export default DetailsMenuKasir;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  Container: {
+    backgroundColor: '#fff',
+    flex: 1,
+  },
+
+  Content: {
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 20,
+    width: '100%',
+    height: 300,
+  },
+});

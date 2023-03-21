@@ -79,7 +79,7 @@ const KasirHomeScreen = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.boxHistory}>
-        <Text style={styles.textHistory}>History Transaction</Text>
+        <Text style={styles.textHistory}>Transaction</Text>
         <ScrollView>
           {/* <Column> */}
           {trans
@@ -88,7 +88,9 @@ const KasirHomeScreen = () => {
             .map((item, i) => {
               let date = new Date(item.tgl_transaksi);
               return (
-                <TouchableOpacity key={i} onPress={()=> navigation.navigate('')}>
+                <TouchableOpacity key={i} onPress={()=> navigation.navigate('DetailsTranscOnProcessKasir', {
+                  transcId: item.id
+                })}>
                   <Rows c_Style={styles.listHistory}>
                     <Column>
                       <Text style={styles.headerHistory}>

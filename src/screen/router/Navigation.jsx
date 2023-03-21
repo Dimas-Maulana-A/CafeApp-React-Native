@@ -25,16 +25,15 @@ import {
   ReportKasir,
   ProfileKasir,
   ChangePasswordKasir,
+  DetailsTranscOnProcessKasir,
   MenuKasir,
   AddMenuKasir,
   EditMenuKasir,
   DetailsMenuKasir,
-
   HistoryTransKasir,
-  
   CategoryMenuKasir,
   AddCategoryMenuKasir,
-  EditCategoryMenuKasir
+  EditCategoryMenuKasir,
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
@@ -95,6 +94,14 @@ function StackNavigation() {
           }}
         />
 
+        <Stack.Screen
+          name="DetailsTranscOnProcessKasir"
+          component={DetailsTranscOnProcessKasir}
+          options={{
+            title: 'Transaction',
+          }}
+        />
+
         {/* HomeKasir */}
 
         <Stack.Screen
@@ -128,7 +135,7 @@ function StackNavigation() {
             title: 'Menu',
           }}
         />
-        
+
         <Stack.Screen
           name="AddMenuKasir"
           component={AddMenuKasir}
@@ -136,7 +143,7 @@ function StackNavigation() {
             title: 'Menu',
           }}
         />
-        
+
         <Stack.Screen
           name="EditMenuKasir"
           component={EditMenuKasir}
@@ -144,7 +151,7 @@ function StackNavigation() {
             title: 'Menu',
           }}
         />
-        
+
         <Stack.Screen
           name="DetailsMenuKasir"
           component={DetailsMenuKasir}

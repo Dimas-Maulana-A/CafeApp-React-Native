@@ -11,6 +11,9 @@ import KasirProfileScreen from "./kasir/KasirProfileScreen";
 import ProfileKasir from "./kasir/Profile/ProfileKasir";
 import ChangePasswordKasir from "./kasir/Profile/ChangePasswordKasir";
 import ReportKasir from "./kasir/Profile/ReportKasir";
+
+import DetailsTranscOnProcessKasir from "./kasir/Transc/DetailsTranscOnProcessKasir";
+
 import HistoryTransKasir from "./kasir/Home/History/HistoryTransKasir";
 
 import MenuKasir from "./kasir/Home/Menu/MenuKasir";
@@ -31,6 +34,8 @@ export {
     ProfileKasir,
     ChangePasswordKasir,
     ReportKasir,
+
+    DetailsTranscOnProcessKasir,
 
     HistoryTransKasir,
 
