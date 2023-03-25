@@ -6,9 +6,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // Tabs Navigator
 import TabsBottomKasir from './Kasir/TabsBottom';
-
-// Screen
-import HomeScreen from '../pages/HomeScreen';
+import TabsDeveloper from './Developer/TabBottomDeveloper';
+import TabsAdmin from './Admin/TabButtonsAdmin';
 
 // Icons
 import {
@@ -203,36 +202,3 @@ function StackNavigation() {
 
 export default StackNavigation;
 
-function TabsAdmin() {
-  return (
-    <Tab.Navigator initialRouteName="ProductScreenAdmin">
-      <Tab.Screen
-        name="HomeScreenAdmin"
-        component={HomeScreen}
-        options={{
-          // title: 'Home',
-          headerTitleAlign: 'center',
-        }}
-      />
-      <Tab.Screen name="SettingScreenAdmin" component={HomeScreen} />
-      <Tab.Screen name="ProductScreenAdmin" component={HomeScreen} />
-    </Tab.Navigator>
-  );
-}
-
-function TabsDeveloper() {
-  return (
-    <Tab.Navigator initialRouteName="SettingScreenDev">
-      <Tab.Screen
-        name="HomeScreenDev"
-        component={HomeScreen}
-        options={{
-          // title: 'Home',
-          headerTitleAlign: 'center',
-        }}
-      />
-      <Tab.Screen name="SettingScreenDev" component={HomeScreen} />
-      <Tab.Screen name="ProductScreenDev" component={HomeScreen} />
-    </Tab.Navigator>
-  );
-}

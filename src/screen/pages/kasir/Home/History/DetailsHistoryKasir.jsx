@@ -46,16 +46,6 @@ const DetailsHistoryKasir = ({route}) => {
       });
   };
 
-  const handleUpdateStatus = () => {
-    auth
-      .put(baseTransaksi + transcId)
-      .then(result => {
-        navigation.navigate('Kasir');
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
   return (
     <View style={styles.Container}>
       {data.map((item, i) => (

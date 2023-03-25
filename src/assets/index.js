@@ -4,6 +4,7 @@ import Logo from "./Logo.png"
 // Icons
 import AddTrans from "./icons/AddTrans.png"
 import BugIcons from "./icons/BugIcons.png"
+import BugIconsLight from "./icons/BugIconsLight.png"
 import Category from "./icons/Category.png"
 import DeleteLight from "./icons/DeleteLight.png"
 import EditLight from "./icons/EditLight.png"
@@ -16,6 +17,7 @@ import ProfileBold from "./icons/ProfileBold.png"
 import ProfileLight from "./icons/ProfileLight.png"
 import Question from "./icons/Question.png"
 import Trans from "./icons/Trans.png"
+import TransLight from "./icons/TransLight.png"
 
 export {
     loginBackground,
@@ -23,6 +25,7 @@ export {
 
     AddTrans,
     BugIcons,
+    BugIconsLight,
     Category,
     DeleteLight,
     EditLight,
@@ -35,5 +38,6 @@ export {
     ProfileLight,
     Question,
     Trans,
+    TransLight,
     
 }

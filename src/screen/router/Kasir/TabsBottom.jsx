@@ -1,7 +1,6 @@
 import {StyleSheet, Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-
 import {KasirHomeScreen, KasirProfileScreen} from '../../pages';
 import CustomCenterRound from './CustomCenterRound';
 

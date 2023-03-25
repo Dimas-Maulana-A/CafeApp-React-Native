@@ -38,17 +38,20 @@ const LoginScreen = () => {
           username: username,
           password: password,
         });
+        const data = res.data.datas;
+        console.log(res.data.datas);
         await setItem('@storage_token', res.data.token);
         await setItem('@storage_data', JSON.stringify(res.data.datas));
         setUsername('');
         setPassword('');
         setSecure(true);
         if (res.data.datas.role === 1) {
-          navigation('Developer');
+          // navigation('Developer');
         } else if (res.data.datas.role === 2) {
           navigation('Admin');
         } else if (res.data.datas.role === 3) {
           navigation('Kasir');
+          await setItem(`@storage_details_${data.id}`, JSON.stringify({}));
         }
       } catch (error) {
         if (error.response) {
@@ -96,14 +99,14 @@ const LoginScreen = () => {
           </View>
         </View>
         <View>
-          <PrimaryButtons 
-          title="Sign In"
-          m_Vertical={20}
-          c_Style={{
-            fontWeight: 'bold',
-            fontSize: 18
-          }}
-          onPressed={LoginValidate}
+          <PrimaryButtons
+            title="Sign In"
+            m_Vertical={20}
+            c_Style={{
+              fontWeight: 'bold',
+              fontSize: 18,
+            }}
+            onPressed={LoginValidate}
           />
         </View>
       </View>
