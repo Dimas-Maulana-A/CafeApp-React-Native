@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image, StyleSheet} from 'react-native';
 
-import {AdminHomeScreen, AdminProfileScreen, AdminReportScreen} from '../../pages/admin';
+import {AdminHomeScreen, AdminProfileScreen, AdminReportScreen, AdminTranscScreen} from '../../pages/admin';
 
 const Tab = createBottomTabNavigator();
 
@@ -62,7 +62,7 @@ function TabsAdmin() {
 
       <Tab.Screen
         name="HistoryScreenAdmin"
-        component={AdminHomeScreen}
+        component={AdminTranscScreen}
         options={{
           title: 'History',
         }}

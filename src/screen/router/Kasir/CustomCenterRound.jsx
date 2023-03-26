@@ -2,7 +2,10 @@ import {TouchableOpacity, View, StyleSheet} from 'react-native';
 
 function CustomCenterRound({children, onPress}) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.ButtonStyle}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.ButtonStyle}
+      activeOpacity={1}>
       <View style={styles.Icons}>{children}</View>
     </TouchableOpacity>
   );

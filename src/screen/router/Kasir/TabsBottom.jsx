@@ -1,7 +1,7 @@
 import {StyleSheet, Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {KasirHomeScreen, KasirProfileScreen} from '../../pages';
+import {KasirHomeScreen, KasirProfileScreen, CreateTranscKasir} from '../../pages';
 import CustomCenterRound from './CustomCenterRound';
 
 import {
@@ -54,9 +54,10 @@ function TabsBottomKasir() {
       />
       <Tab.Screen
         name="TransScreenKasir"
-        component={KasirHomeScreen}
+        component={CreateTranscKasir}
         options={{
           title: 'Transaction',
+          headerShown: false,
           tabBarIcon: ({focused, size}) => (
             <Image
               source={AddTrans}

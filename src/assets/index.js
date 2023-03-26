@@ -5,6 +5,7 @@ import Logo from "./Logo.png"
 import AddTrans from "./icons/AddTrans.png"
 import BugIcons from "./icons/BugIcons.png"
 import BugIconsLight from "./icons/BugIconsLight.png"
+import Buy from "./icons/Buy.png"
 import Category from "./icons/Category.png"
 import DeleteLight from "./icons/DeleteLight.png"
 import EditLight from "./icons/EditLight.png"
@@ -26,6 +27,7 @@ export {
     AddTrans,
     BugIcons,
     BugIconsLight,
+    Buy,
     Category,
     DeleteLight,
     EditLight,
