@@ -7,8 +7,16 @@ const Tab = createBottomTabNavigator();
 import {
   DeveloperHomeScreen,
   DeveloperProfileScreen,
+  DeveloperReportFinished,
 } from '../../pages/developer';
-import {HomeBold, HomeLight, ProfileBold, ProfileLight} from '../../../assets';
+import {
+  BugIcons,
+  BugIconsLight,
+  HomeBold,
+  HomeLight,
+  ProfileBold,
+  ProfileLight,
+} from '../../../assets';
 
 function TabsDeveloper() {
   return (
@@ -20,6 +28,8 @@ function TabsDeveloper() {
 
           if (route.name === 'HomeScreenDev') {
             Icons = focused ? HomeBold : HomeLight;
+          } else if (route.name === 'ReportFinishedDevelopment') {
+            Icons = focused ? BugIcons : BugIconsLight;
           } else if (route.name === 'ProfileScreenDev') {
             Icons = focused ? ProfileBold : ProfileLight;
           }
@@ -45,6 +55,14 @@ function TabsDeveloper() {
         component={DeveloperHomeScreen}
         options={{
           title: 'Home',
+          // headerTitleAlign: 'center',
+        }}
+      />
+      <Tab.Screen
+        name="ReportFinishedDevelopment"
+        component={DeveloperReportFinished}
+        options={{
+          title: 'Finished Report',
           // headerTitleAlign: 'center',
         }}
       />

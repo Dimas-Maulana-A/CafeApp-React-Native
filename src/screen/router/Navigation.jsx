@@ -29,6 +29,8 @@ import {
   ReportAdmin,
   ChangePasswordAdmin,
   ReportDetailsAdmin,
+  ProfileScreenDeveloper,
+  ReportDetailsDeveloper,
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
@@ -219,6 +221,22 @@ function StackNavigation() {
           component={TabsDeveloper}
           options={{
             headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="ProfileScreenDeveloper"
+          component={ProfileScreenDeveloper}
+          options={{
+            title: 'Profile',
+          }}
+        />
+
+        <Stack.Screen
+          name="ReportDetailsDeveloper"
+          component={ReportDetailsDeveloper}
+          options={{
+            title: 'Details',
           }}
         />
       </Stack.Navigator>
