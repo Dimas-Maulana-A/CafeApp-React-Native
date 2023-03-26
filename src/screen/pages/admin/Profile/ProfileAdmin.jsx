@@ -51,7 +51,7 @@ const ProfileAdmin = () => {
         username: username,
       })
       .then(result => {
-        navigation.navigate('Kasir');
+        navigation.navigate('Admin');
       })
       .catch(err => {
         console.log(err);
@@ -99,7 +99,7 @@ const ProfileAdmin = () => {
         <Space Height={15} />
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('ChangePasswordKasir')}>
+          onPress={() => navigation.navigate('ChangePasswordAdmin')}>
           <Text
             style={{
               color: 'black',

@@ -5,6 +5,7 @@ import SplashScreen from "../SplashScreen";
 import LoginScreen from "../Validation/LoginScreen";
 
 export * from "./kasir"
+export * from "./admin"
 
 export {
     SplashScreen,

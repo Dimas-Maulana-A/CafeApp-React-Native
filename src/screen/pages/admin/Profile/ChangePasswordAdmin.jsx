@@ -48,7 +48,7 @@ const ChangePasswordAdmin = () => {
           newpassword: newPassword,
         })
         .then(result => {
-          navigation.navigate('ProfileKasir');
+          navigation.navigate('ProfileAdmin');
         })
         .catch(err => {
           if (err.response) {

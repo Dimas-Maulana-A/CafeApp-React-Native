@@ -19,7 +19,7 @@ const ReportAdmin = () => {
       })
       .then(result => {
         alert('Success');
-        navigation.navigate('ProfileScreenKasir');
+        navigation.navigate('Admin');
       })
       .catch(err => {
         console.log(err);

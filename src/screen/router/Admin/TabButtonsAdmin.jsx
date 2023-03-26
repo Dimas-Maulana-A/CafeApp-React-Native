@@ -1,9 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { Image, StyleSheet } from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 
-import AdminProfileScreen from '../../pages/admin/AdminProfileScreen';
-import HomeScreen from '../../pages/HomeScreen';
+import {AdminHomeScreen, AdminProfileScreen, AdminReportScreen} from '../../pages/admin';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,75 +14,79 @@ import {
   ProfileBold,
   ProfileLight,
   Trans,
-  TransLight
+  TransLight,
 } from '../../../assets';
 
 function TabsAdmin() {
   return (
-    <Tab.Navigator initialRouteName="ProductScreenAdmin"
-    screenOptions={({route})=> ({
-      tabBarIcon: ({focused, color, size}) => {
-        let Icons;
+    <Tab.Navigator
+      initialRouteName="ProductScreenAdmin"
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let Icons;
 
-        if (route.name === 'HomeScreenAdmin') {
-          Icons = focused ? HomeBold : HomeLight;
-        } else if (route.name === 'HistoryScreenAdmin') {
-          Icons = focused ? Trans : TransLight;
-        }else if (route.name === 'ReportScreenAdmin') {
-          Icons = focused ? BugIcons : BugIconsLight;
-        }else if (route.name === 'AdminProfileScreen') {
-          Icons = focused ? ProfileBold : ProfileLight;
-        }
-        return (
-          <Image
-            source={Icons}
-            style={{
-              width: size,
-              height: size,
-              tintColor: color,
-            }}
-            resizeMode="contain"
-          />
-        );
-      },
-      tabBarActiveTintColor: 'black',
-      tabBarInactiveTintColor: 'black',
-      tabBarShowLabel: false,
-      tabBarStyle: styles.tabBarStyles,
-    })}>
+          if (route.name === 'HomeScreenAdmin') {
+            Icons = focused ? HomeBold : HomeLight;
+          } else if (route.name === 'HistoryScreenAdmin') {
+            Icons = focused ? Trans : TransLight;
+          } else if (route.name === 'AdminReportScreen') {
+            Icons = focused ? BugIcons : BugIconsLight;
+          } else if (route.name === 'AdminProfileScreen') {
+            Icons = focused ? ProfileBold : ProfileLight;
+          }
+          return (
+            <Image
+              source={Icons}
+              style={{
+                width: size,
+                height: size,
+                tintColor: color,
+              }}
+              resizeMode="contain"
+            />
+          );
+        },
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'black',
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBarStyles,
+      })}>
       <Tab.Screen
         name="HomeScreenAdmin"
-        component={HomeScreen}
+        component={AdminHomeScreen}
         options={{
           title: 'Home',
-          headerTitleAlign: 'center',
+          headerShown: false
         }}
       />
 
       <Tab.Screen
         name="HistoryScreenAdmin"
-        component={HomeScreen}
+        component={AdminHomeScreen}
         options={{
           title: 'History',
         }}
       />
       <Tab.Screen
-        name="ReportScreenAdmin"
-        component={HomeScreen}
+        name="AdminReportScreen"
+        component={AdminReportScreen}
         options={{
           title: 'Report',
         }}
       />
-      <Tab.Screen name="AdminProfileScreen" component={AdminProfileScreen} options={{
-        title: 'Profile',
-        headerShown: false
-      }} />
+      <Tab.Screen
+        name="AdminProfileScreen"
+        component={AdminProfileScreen}
+        options={{
+          title: 'Profile',
+          headerShown: false,
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
 export default TabsAdmin;
-
 
 const styles = StyleSheet.create({
   tabBarStyles: {

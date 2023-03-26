@@ -34,6 +34,10 @@ import {
   CategoryMenuKasir,
   AddCategoryMenuKasir,
   EditCategoryMenuKasir,
+  ProfileAdmin,
+  ReportAdmin,
+  ChangePasswordAdmin,
+  ReportDetailsAdmin,
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
@@ -82,7 +86,7 @@ function StackNavigation() {
           name="ChangePasswordKasir"
           component={ChangePasswordKasir}
           options={{
-            title: 'Change Profile',
+            title: 'Profile',
           }}
         />
 
@@ -186,6 +190,38 @@ function StackNavigation() {
           }}
         />
 
+        <Stack.Screen
+          name="ReportAdmin"
+          component={ReportAdmin}
+          options={{
+            title: 'Report Bug',
+          }}
+        />
+
+        <Stack.Screen
+          name="ProfileAdmin"
+          component={ProfileAdmin}
+          options={{
+            title: 'Profile',
+          }}
+        />
+
+        <Stack.Screen
+          name="ChangePasswordAdmin"
+          component={ChangePasswordAdmin}
+          options={{
+            title: 'Profile',
+          }}
+        />
+
+        <Stack.Screen
+          name="ReportDetailsAdmin"
+          component={ReportDetailsAdmin}
+          options={{
+            title: 'Details',
+          }}
+        />
+
         {/* Developer Screen */}
 
         <Stack.Screen
@@ -201,4 +237,3 @@ function StackNavigation() {
 }
 
 export default StackNavigation;
-

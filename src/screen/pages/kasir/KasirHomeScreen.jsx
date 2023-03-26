@@ -87,6 +87,7 @@ const KasirHomeScreen = () => {
             .filter(item => item.id_kasir === userId)
             .map((item, i) => {
               let date = new Date(item.tgl_transaksi);
+              let options = {year: 'numeric', month: 'long', day: 'numeric'}
               return (
                 <TouchableOpacity key={i} onPress={()=> navigation.navigate('DetailsTranscOnProcessKasir', {
                   transcId: item.id
@@ -96,7 +97,7 @@ const KasirHomeScreen = () => {
                       <Text style={styles.headerHistory}>
                         {item.nama_pelanggan}
                       </Text>
-                      <Text>Date : {date.toLocaleDateString()}</Text>
+                      <Text>Date : {date.toLocaleDateString('en-EN', options)}</Text>
                       <Text>
                         Table Number : {item.meja_pelanggan.nomor_meja}
                       </Text>

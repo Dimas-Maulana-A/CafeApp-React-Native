@@ -50,7 +50,7 @@ const AdminProfileScreen = () => {
       <View>
         <TouchableOpacity
           style={styles.boxProfile}
-          onPress={() => navigation.navigate('ProfileKasir')}>
+          onPress={() => navigation.navigate('ProfileAdmin')}>
           <View style={styles.Profiles}>
             <Image
               source={ProfileBold}
@@ -67,7 +67,7 @@ const AdminProfileScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.boxProfile}
-          onPress={() => navigation.navigate('ReportKasir')}>
+          onPress={() => navigation.navigate('ReportAdmin')}>
           <View style={styles.Profiles}>
             <Image
               source={BugIcons}
