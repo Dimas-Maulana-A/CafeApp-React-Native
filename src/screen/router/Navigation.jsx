@@ -9,15 +9,6 @@ import TabsBottomKasir from './Kasir/TabsBottom';
 import TabsDeveloper from './Developer/TabBottomDeveloper';
 import TabsAdmin from './Admin/TabButtonsAdmin';
 
-// Icons
-import {
-  HomeBold,
-  HomeLight,
-  AddTrans,
-  ProfileBold,
-  ProfileLight,
-} from '../../assets';
-
 import {
   SplashScreen,
   LoginScreen,
@@ -41,7 +32,6 @@ import {
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
 
 function StackNavigation() {
   return (

@@ -46,7 +46,7 @@ const LoginScreen = () => {
         setPassword('');
         setSecure(true);
         if (res.data.datas.role === 1) {
-          // navigation('Developer');
+          navigation('Developer');
         } else if (res.data.datas.role === 2) {
           navigation('Admin');
         } else if (res.data.datas.role === 3) {
@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
 
   inputText: {
     fontSize: 18,
+    width: '100%'
   },
 
   inputTextPassword: {
