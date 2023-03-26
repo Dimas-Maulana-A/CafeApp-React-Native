@@ -29,7 +29,8 @@ import {
   ReportAdmin,
   ChangePasswordAdmin,
   ReportDetailsAdmin,
-  ProfileScreenDeveloper,
+  ProfileDev,
+  ChangePasswordDev,
   ReportDetailsDeveloper,
 } from '../pages';
 
@@ -225,8 +226,16 @@ function StackNavigation() {
         />
 
         <Stack.Screen
-          name="ProfileScreenDeveloper"
-          component={ProfileScreenDeveloper}
+          name="ProfileDev"
+          component={ProfileDev}
+          options={{
+            title: 'Profile',
+          }}
+        />
+
+        <Stack.Screen
+          name="ChangePasswordDev"
+          component={ChangePasswordDev}
           options={{
             title: 'Profile',
           }}
