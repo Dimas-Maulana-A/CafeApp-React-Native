@@ -49,6 +49,7 @@ const AdminTranscScreen = () => {
             .filter(item => item.status === 'success')
             .map((item, i) => {
               let date = new Date(item.tgl_transaksi);
+              let options = {year: 'numeric', month: 'long', day: 'numeric'}
               return (
                 <View key={i} style={styles.Content}>
                   <TouchableOpacity style={{
@@ -59,7 +60,7 @@ const AdminTranscScreen = () => {
                   })}>
                     <Column>
                       <Text style={styles.NameText}>{item.nama_pelanggan}</Text>
-                      <Text>Date : {date.toLocaleDateString()}</Text>
+                      <Text>Date : {date.toLocaleDateString('en-EN', options)}</Text>
                       <Text>
                         Table :{' '}
                         {item.meja_pelanggan

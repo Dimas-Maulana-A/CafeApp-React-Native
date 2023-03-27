@@ -30,7 +30,8 @@ const DetailsTranscOnProcessKasir = ({route}) => {
       .then(result => {
         const data = result.data ? result.data.data : result.data;
         let date = new Date(data.tgl_transaksi);
-        setDate(date.toLocaleDateString());
+        let options = {year: 'numeric', month: 'long', day: 'numeric'}
+        setDate(date.toLocaleDateString('en-EN', options));
         const transc = [];
         transc.push(data);
         setData(transc);
