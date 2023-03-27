@@ -63,7 +63,7 @@ const AdminReportScreen = () => {
                     {item.message}
                   </Text>
                   <Text>
-                    {item.reports ? item.reports.name : item.id_kasir}
+                    {item.kasir}
                   </Text>
                 </Column>
                 <Text

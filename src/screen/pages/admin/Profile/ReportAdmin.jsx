@@ -14,8 +14,9 @@ const ReportAdmin = () => {
     const data = JSON.parse(await getItem('@storage_data'));
     auth
       .post(baseReport, {
-        id_kasir: data.id ? data.id : '',
+        kasir: data.username ? data.username : '',
         message: message,
+        role: data.role
       })
       .then(result => {
         alert('Success');

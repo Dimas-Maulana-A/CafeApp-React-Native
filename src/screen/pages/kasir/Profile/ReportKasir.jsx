@@ -12,10 +12,12 @@ const ReportKasir = () => {
 
   const pushReport = async () => {
     const data = JSON.parse(await getItem('@storage_data'));
+    console.log(data.role)
     auth
       .post(baseReport, {
-        id_kasir: data.id ? data.id : '',
+        kasir: data.username ? data.username : '',
         message: message,
+        role: data.role
       })
       .then(result => {
         alert('Success');

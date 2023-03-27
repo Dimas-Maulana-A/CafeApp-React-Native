@@ -10,7 +10,7 @@ import React, {useEffect, useState} from 'react';
 import {getItem, auth, baseKasir, baseTransaksi} from '../../../utils';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
-import {Category, Menu, Trans} from '../../../assets';
+import {Category, Menu, Trans1} from '../../../assets';
 import {Column, Rows} from '../../../components';
 
 const KasirHomeScreen = () => {
@@ -75,7 +75,7 @@ const KasirHomeScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('HistoryTransKasir')}>
-          <Image source={Trans} alt="Trans Icon" style={styles.menuImage} />
+          <Image source={Trans1} alt="Trans Icon" style={styles.menuImage} />
         </TouchableOpacity>
       </View>
       <View style={styles.boxHistory}>
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
   },
 
   menuImage: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
   },
 
   boxHistory: {

@@ -40,6 +40,13 @@ import {
   AddCategoryMenuAdmin,
   CategoryMenuAdmin,
   EditCategoryMenuAdmin,
+  AddAdminRole,
+  AdminRole,
+  EditAdminRole,
+  KasirAdmin,
+  AddKasirAdmin,
+  DetailsKasirAdmin,
+  EditKasirAdmin,
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
@@ -317,6 +324,59 @@ function StackNavigation() {
           component={EditCategoryMenuAdmin}
           options={{
             title: 'Menu',
+          }}
+        />
+
+        <Stack.Screen
+          name="AddAdminRole"
+          component={AddAdminRole}
+          options={{
+            title: 'Role',
+          }}
+        />
+
+        <Stack.Screen
+          name="AdminRole"
+          component={AdminRole}
+          options={{
+            title: 'Role',
+          }}
+        />
+
+        <Stack.Screen
+          name="EditAdminRole"
+          component={EditAdminRole}
+          options={{
+            title: 'Role',
+          }}
+        />
+
+        <Stack.Screen
+          name="KasirAdmin"
+          component={KasirAdmin}
+          options={{
+            title: 'Kasir',
+          }}
+        />
+        <Stack.Screen
+          name="AddKasirAdmin"
+          component={AddKasirAdmin}
+          options={{
+            title: 'Kasir',
+          }}
+        />
+        <Stack.Screen
+          name="DetailsKasirAdmin"
+          component={DetailsKasirAdmin}
+          options={{
+            title: 'Kasir',
+          }}
+        />
+        <Stack.Screen
+          name="EditKasirAdmin"
+          component={EditKasirAdmin}
+          options={{
+            title: 'Kasir',
           }}
         />
       </Stack.Navigator>

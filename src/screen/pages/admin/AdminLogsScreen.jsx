@@ -42,7 +42,7 @@ const AdminLogsScreen = () => {
       <ScrollView>
         <Templates p_Horizontal={'5%'}>
           {data
-            .filter(d => d.id_kasir === 3)
+            .filter(d => d.role === 3)
             .map((d, i) => {
               let date = new Date(d.createdAt);
               let options = {year: 'numeric', month: 'long', day: 'numeric'};
@@ -63,7 +63,7 @@ const AdminLogsScreen = () => {
                           fontWeight: 'bold',
                           color: 'black',
                         }}>
-                        {d.logs ? d.logs.name : d.id_kasir}
+                        {d.kasir}
                       </Text>
                       <Text>
                         {hour.toString().padStart(2, '0')}.

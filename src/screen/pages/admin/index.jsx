@@ -18,6 +18,15 @@ import AddCategoryMenuAdmin from "./Home/Category/AddCategoryMenuAdmin";
 import CategoryMenuAdmin from "./Home/Category/CategoryMenuAdmin";
 import EditCategoryMenuAdmin from "./Home/Category/EditCategoryMenuAdmin";
 
+import AddAdminRole from "./Home/Role/AddAdminRole";
+import AdminRole from "./Home/Role/AdminRole";
+import EditAdminRole from "./Home/Role/EditAdminRole";
+
+import KasirAdmin from "./Home/Kasir/KasirAdmin";
+import AddKasirAdmin from "./Home/Kasir/AddKasirAdmin";
+import DetailsKasirAdmin from "./Home/Kasir/DetailsKasirAdmin";
+import EditKasirAdmin from "./Home/Kasir/EditKasirAdmin";
+
 export {
     AdminHomeScreen,
     AdminLogsScreen,
@@ -38,4 +47,13 @@ export {
     AddCategoryMenuAdmin,
     CategoryMenuAdmin,
     EditCategoryMenuAdmin,
+
+    AddAdminRole,
+    AdminRole,
+    EditAdminRole,
+
+    KasirAdmin,
+    AddKasirAdmin,
+    DetailsKasirAdmin,
+    EditKasirAdmin,
 }

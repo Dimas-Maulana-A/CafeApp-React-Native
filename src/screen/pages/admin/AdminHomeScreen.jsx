@@ -9,8 +9,8 @@ import {
 import React, {useEffect, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
-import {Category, Menu, Trans} from '../../../assets';
-import {Column, Rows} from '../../../components';
+import {Category, Menu, Kasirs, Table, Roles} from '../../../assets';
+import {Templates, Column, Rows} from '../../../components';
 import {getItem, auth, baseKasir, baseTransaksi} from '../../../utils';
 
 const AdminHomeScreen = () => {
@@ -20,32 +20,30 @@ const AdminHomeScreen = () => {
   const focused = useIsFocused();
   const navigation = useNavigation();
 
-  useEffect(()=> {
-    localData()
-    handleGetTransc()
-  }, [focused])
+  useEffect(() => {
+    localData();
+    handleGetTransc();
+  }, [focused]);
 
-  const localData = async()=> {
-    const datas  = JSON.parse(await getItem('@storage_data'))
+  const localData = async () => {
+    const datas = JSON.parse(await getItem('@storage_data'));
     try {
-      if(datas == null){
-        navigation.navigate('Login')
-      }else{
-        auth.get(baseKasir+datas.id)
-        .then(result=> {
-          setData(result.data ? result.data.data : result.data)
-        })
-        .catch(err=> {
-          console.log(err)
-        })
+      if (datas == null) {
+        navigation.navigate('Login');
+      } else {
+        auth
+          .get(baseKasir + datas.id)
+          .then(result => {
+            setData(result.data ? result.data.data : result.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     } catch (error) {
-      navigation.navigate("Login")
+      navigation.navigate('Login');
     }
-
-  }
-
-
+  };
 
   const handleGetTransc = () => {
     auth
@@ -74,39 +72,55 @@ const AdminHomeScreen = () => {
           <Image source={Menu} alt="Menu Icon" style={styles.menuImage} />
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => navigation.navigate('AdminRole')}>
+          <Image source={Roles} alt="Trans Icon" style={styles.menuImage} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('KasirAdmin')}>
+          <Image source={Kasirs} alt="Trans Icon" style={styles.menuImage} />
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => navigation.navigate('HistoryTransKasir')}>
-          <Image source={Trans} alt="Trans Icon" style={styles.menuImage} />
+          <Image source={Table} alt="Trans Icon" style={styles.menuImage} />
         </TouchableOpacity>
       </View>
       <View style={styles.boxHistory}>
         <Text style={styles.textHistory}>Transaction</Text>
         <ScrollView>
-          {/* <Column> */}
-          {trans
-            .filter(item => item.status === 'on process')
-            .map((item, i) => {
-              let date = new Date(item.tgl_transaksi);
-              let options = {year: 'numeric', month: 'long', day: 'numeric'}
-              return (
-                <TouchableOpacity key={i} onPress={()=> navigation.navigate('DetailsHistoryAdmin', {
-                  transcId: item.id
-                })}>
-                  <Rows c_Style={styles.listHistory}>
-                    <Column>
-                      <Text style={styles.headerHistory}>
-                        {item.nama_pelanggan}
-                      </Text>
-                      <Text>Date : {date.toLocaleDateString('en-EN', options)}</Text>
-                      <Text>
-                        Table Number : {item.meja_pelanggan.nomor_meja}
-                      </Text>
-                    </Column>
-                    <Text>{item.status}</Text>
-                  </Rows>
-                </TouchableOpacity>
-              );
-            })}
-          {/* </Column> */}
+          <Templates m_Horizontal={'5%'}>
+            {/* <Column> */}
+            {trans
+              .filter(item => item.status === 'on process')
+              .map((item, i) => {
+                let date = new Date(item.tgl_transaksi);
+                let options = {year: 'numeric', month: 'long', day: 'numeric'};
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() =>
+                      navigation.navigate('DetailsHistoryAdmin', {
+                        transcId: item.id,
+                      })
+                    }>
+                    <Rows c_Style={styles.listHistory}>
+                      <Column>
+                        <Text style={styles.headerHistory}>
+                          {item.nama_pelanggan}
+                        </Text>
+                        <Text>
+                          Date : {date.toLocaleDateString('en-EN', options)}
+                        </Text>
+                        <Text>
+                          Table Number : {item.meja_pelanggan.nomor_meja}
+                        </Text>
+                      </Column>
+                      <Text>{item.status}</Text>
+                    </Rows>
+                  </TouchableOpacity>
+                );
+              })}
+            {/* </Column> */}
+          </Templates>
         </ScrollView>
       </View>
     </View>
@@ -143,13 +157,13 @@ const styles = StyleSheet.create({
   },
 
   menuImage: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
   },
 
   boxHistory: {
     flex: 1,
-    padding: '5%',
+    // padding: '5%',
     paddingBottom: 80,
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
@@ -164,10 +178,12 @@ const styles = StyleSheet.create({
   },
 
   textHistory: {
+    marginLeft: '5%',
+    marginTop: '5%',
     fontSize: 20,
     color: 'black',
     fontWeight: 'bold',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
 
   listHistory: {

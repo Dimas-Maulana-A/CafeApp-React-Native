@@ -50,7 +50,7 @@ const ReportDetailsAdmin = ({route}) => {
           <Text style={styles.Labels}>Report Name :</Text>
           <Space Height={8} />
           <Text style={styles.boxDetails}>
-            {data.id_kasir ? data.reports.name : data.id_kasir}
+            {data.kasir}
           </Text>
         </Column>
         <Space Height={20} />

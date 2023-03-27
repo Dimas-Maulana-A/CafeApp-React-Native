@@ -8,7 +8,7 @@ import { auth, baseTransaksi, getItem } from '../../../utils';
 
 const AdminTranscScreen = () => {
     const [data, setData] = useState([]);
-    const [userId, setUserId] = useState('');
+    // const [userId, setUserId] = useState('');
     // const [testInput, setTesInput] = useState('')
     const focused = useIsFocused();
     const navigation = useNavigation();
