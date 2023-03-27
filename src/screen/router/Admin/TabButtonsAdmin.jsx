@@ -2,7 +2,13 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image, StyleSheet} from 'react-native';
 
-import {AdminHomeScreen, AdminProfileScreen, AdminReportScreen, AdminTranscScreen} from '../../pages/admin';
+import {
+  AdminHomeScreen,
+  AdminLogsScreen,
+  AdminProfileScreen,
+  AdminReportScreen,
+  AdminTranscScreen,
+} from '../../pages/admin';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,6 +17,8 @@ import {
   HomeLight,
   BugIcons,
   BugIconsLight,
+  LogsBold,
+  LogsLight,
   ProfileBold,
   ProfileLight,
   Trans,
@@ -31,6 +39,8 @@ function TabsAdmin() {
             Icons = focused ? Trans : TransLight;
           } else if (route.name === 'AdminReportScreen') {
             Icons = focused ? BugIcons : BugIconsLight;
+          } else if (route.name === 'AdminLogsScreen') {
+            Icons = focused ? LogsBold : LogsLight;
           } else if (route.name === 'AdminProfileScreen') {
             Icons = focused ? ProfileBold : ProfileLight;
           }
@@ -56,7 +66,7 @@ function TabsAdmin() {
         component={AdminHomeScreen}
         options={{
           title: 'Home',
-          headerShown: false
+          headerShown: false,
         }}
       />
 
@@ -72,6 +82,13 @@ function TabsAdmin() {
         component={AdminReportScreen}
         options={{
           title: 'Report',
+        }}
+      />
+      <Tab.Screen
+        name="AdminLogsScreen"
+        component={AdminLogsScreen}
+        options={{
+          title: 'Logs Kasir',
         }}
       />
       <Tab.Screen

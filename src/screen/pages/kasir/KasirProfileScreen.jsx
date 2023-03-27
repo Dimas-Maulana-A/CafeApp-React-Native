@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-import {getItem, removeItem, auth, baseKasir} from '../../../utils';
+import {getItem, removeItem, auth, baseKasir, baseLogs} from '../../../utils';
 import {ProfileBold, BugIcons} from '../../../assets';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
@@ -33,14 +33,22 @@ const KasirProfileScreen = () => {
     }
   };
 
-  const signOut = () => {
-    try {
-      removeItem('@storage_data');
-      removeItem('@storage_token');
-      navigation.navigate('Login');
-    } catch (error) {
-      console.log(error);
-    }
+  const signOut = async () => {
+    const datas = JSON.parse(await getItem('@storage_data'));
+    const userId = datas.id;
+
+    navigation.navigate('Login');
+    removeItem('@storage_data');
+    removeItem('@storage_token');
+
+    auth
+      .post(baseLogs + userId)
+      .then(result => {
+        console.log('logout');
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (

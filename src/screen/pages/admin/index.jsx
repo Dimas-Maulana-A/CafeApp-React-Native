@@ -1,4 +1,5 @@
 import AdminHomeScreen from "./AdminHomeScreen";
+import AdminLogsScreen from "./AdminLogsScreen";
 import AdminProfileScreen from "./AdminProfileScreen";
 import AdminReportScreen from "./AdminReportScreen";
 import AdminTranscScreen from "./AdminTranscScreen";
@@ -19,6 +20,7 @@ import EditCategoryMenuAdmin from "./Home/Category/EditCategoryMenuAdmin";
 
 export {
     AdminHomeScreen,
+    AdminLogsScreen,
     AdminProfileScreen,
     AdminReportScreen,
     AdminTranscScreen,

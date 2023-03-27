@@ -10,6 +10,7 @@ import {
   baseTransaksi,
   baseDetails,
   baseReport,
+  baseLogs,
 } from './base';
 
 export {
@@ -27,4 +28,5 @@ export {
   baseTransaksi,
   baseDetails,
   baseReport,
+  baseLogs,
 };
