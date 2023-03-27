@@ -104,14 +104,18 @@ const DetailsHistoryAdmin = ({route}) => {
               </View>
 
               {/* Total Harga */}
+              <Column c_Style={{
+                paddingVertical: 10
+              }}>
               <Rows
                 c_Style={{
                   justifyContent: 'space-between',
-                  paddingVertical: 10,
+                  // paddingVertical: 10,
                 }}>
                 <Text>payment method : {item.metode_pembayaran}</Text>
                 <Text>Total : {totalPrice}</Text>
               </Rows>
+              <Text>Kasir : {item.kasirs ? item.kasirs.name : item.id_kasir}</Text></Column>
             </Column>
           </Column>
         </Templates>

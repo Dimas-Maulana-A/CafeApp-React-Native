@@ -33,6 +33,13 @@ import {
   ChangePasswordDev,
   ReportDetailsDeveloper,
   DetailsHistoryAdmin,
+  AddMenuAdmin,
+  DetailsMenuAdmin,
+  EditMenuAdmin,
+  MenuAdmin,
+  AddCategoryMenuAdmin,
+  CategoryMenuAdmin,
+  EditCategoryMenuAdmin,
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
@@ -255,6 +262,61 @@ function StackNavigation() {
           component={ReportDetailsDeveloper}
           options={{
             title: 'Details',
+          }}
+        />
+
+        <Stack.Screen
+          name="AddMenuAdmin"
+          component={AddMenuAdmin}
+          options={{
+            title: 'Menu',
+          }}
+        />
+
+        <Stack.Screen
+          name="DetailsMenuAdmin"
+          component={DetailsMenuAdmin}
+          options={{
+            title: 'Menu',
+          }}
+        />
+
+        <Stack.Screen
+          name="EditMenuAdmin"
+          component={EditMenuAdmin}
+          options={{
+            title: 'Menu',
+          }}
+        />
+
+        <Stack.Screen
+          name="MenuAdmin"
+          component={MenuAdmin}
+          options={{
+            title: 'Menu',
+          }}
+        />
+
+        <Stack.Screen
+          name="AddCategoryMenuAdmin"
+          component={AddCategoryMenuAdmin}
+          options={{
+            title: 'Menu',
+          }}
+        />
+
+        <Stack.Screen
+          name="CategoryMenuAdmin"
+          component={CategoryMenuAdmin}
+          options={{
+            title: 'Menu',
+          }}
+        />
+        <Stack.Screen
+          name="EditCategoryMenuAdmin"
+          component={EditCategoryMenuAdmin}
+          options={{
+            title: 'Menu',
           }}
         />
       </Stack.Navigator>

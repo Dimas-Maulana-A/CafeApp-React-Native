@@ -42,7 +42,7 @@ const AdminTranscScreen = () => {
   
     return (
       <ScrollView style={styles.Container}>
-        <Templates m_Horizontal={'5%'} m_Vertical={'5%'}>
+        <Templates m_Horizontal={'5%'} >
           {/* <Input Value={testInput} on_Change={tx => setTesInput(tx)} /> */}
           {data
           // .filter(item => item.nama_pelanggan.toLowerCase().includes(testInput.toLowerCase()))

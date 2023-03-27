@@ -8,6 +8,14 @@ import ProfileAdmin from "./Profile/ProfileAdmin";
 import ReportAdmin from "./Profile/ReportAdmin";
 import ReportDetailsAdmin from "./Report/ReportDetailsAdmin";
 
+import AddMenuAdmin from "./Home/Menu/AddMenuAdmin";
+import DetailsMenuAdmin from "./Home/Menu/DetailsMenuAdmin";
+import EditMenuAdmin from "./Home/Menu/EditMenuAdmin";
+import MenuAdmin from "./Home/Menu/MenuAdmin";
+
+import AddCategoryMenuAdmin from "./Home/Category/AddCategoryMenuAdmin";
+import CategoryMenuAdmin from "./Home/Category/CategoryMenuAdmin";
+import EditCategoryMenuAdmin from "./Home/Category/EditCategoryMenuAdmin";
 
 export {
     AdminHomeScreen,
@@ -18,5 +26,14 @@ export {
     DetailsHistoryAdmin,
     ProfileAdmin,
     ReportAdmin,
-    ReportDetailsAdmin
+    ReportDetailsAdmin,
+    
+    AddMenuAdmin,
+    DetailsMenuAdmin,
+    EditMenuAdmin,
+    MenuAdmin,
+
+    AddCategoryMenuAdmin,
+    CategoryMenuAdmin,
+    EditCategoryMenuAdmin,
 }
