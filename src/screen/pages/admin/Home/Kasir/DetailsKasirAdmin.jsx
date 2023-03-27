@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 
 import {auth, baseKasir} from '../../../../../utils';
-import {Question} from '../../../../../assets';
 import {
   Templates,
   Column,
+  Space,
   Rows,
   PrimaryButtons,
 } from '../../../../../components';
@@ -25,17 +25,7 @@ const DetailsKasirAdmin = ({route}) => {
     auth
       .get(baseKasir + kasirId)
       .then(async result => {
-        const datas = result.data.data;
         setData(result.data.data);
-        console.log(result.data);
-        auth
-          .get(baseKasir + 'image/' + datas.image)
-          .then(result => {
-            setImage(true);
-          })
-          .catch(err => {
-            setImage(false);
-          });
       })
       .catch(err => {
         console.log(err);
@@ -45,61 +35,18 @@ const DetailsKasirAdmin = ({route}) => {
   return (
     <View style={styles.Container}>
       <Templates m_Horizontal={'5%'} m_Vertical={'5%'}>
-        <View style={styles.Content}>
-          {image ? (
-            <Image
-              source={{uri: baseKasir + 'image/' + data.image}}
-              style={{
-                height: '100%',
-                width: '100%',
-              }}
-              resizeMode="contain"
-            />
-          ) : (
-            <Column
-              c_Style={{
-                alignItems: 'center',
-              }}>
-              <Image
-                source={Question}
-                style={{
-                  tintColor: 'silver',
-                }}
-                resizeMode="contain"
-              />
-              <Text>Image Not Found</Text>
-            </Column>
-          )}
-        </View>
         <Column>
-          <Text
-            style={{
-              fontSize: 28,
-              fontWeight: 'bold',
-              color: 'black',
-              paddingVertical: 10,
-            }}>
-            {data.name}
+          <Text style={styles.label}>Name :</Text>
+          <Text style={styles.dataContent}>{data.name ? data.name : ''}</Text>
+          <Space Height={15} />
+          <Text style={styles.label}>Username :</Text>
+          <Text style={styles.dataContent}>
+            {data.username ? data.username : ''}
           </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              color: 'red',
-              fontWeight: 'bold',
-            }}>
-            {data.harga}
-          </Text>
-          <Text
-            style={{
-              color: 'black',
-            }}>
-            Description : {data.description}
-          </Text>
-          <Text
-            style={{
-              color: 'black',
-            }}>
-            Category : {data.categorys ? data.categorys.name : data.category}
+          <Space Height={15} />
+          <Text style={styles.label}>Role :</Text>
+          <Text style={styles.dataContent}>
+            {data.roles ? data.roles.name : data.role}
           </Text>
         </Column>
       </Templates>
@@ -123,5 +70,17 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: '100%',
     height: 300,
+  },
+
+  label: {
+    fontSize: 18,
+  },
+
+  dataContent: {
+    backgroundColor: '#f0f0f0',
+    color: 'black',
+    padding: 10,
+    borderRadius: 20,
+    fontSize: 18,
   },
 });
