@@ -27,6 +27,10 @@ import AddKasirAdmin from "./Home/Kasir/AddKasirAdmin";
 import DetailsKasirAdmin from "./Home/Kasir/DetailsKasirAdmin";
 import EditKasirAdmin from "./Home/Kasir/EditKasirAdmin";
 
+import AddTableAdmin from "./Home/Table/AddTableAdmin";
+import EditTableAdmin from "./Home/Table/EditTableAdmin";
+import TableAdmin from "./Home/Table/TableAdmin";
+
 export {
     AdminHomeScreen,
     AdminLogsScreen,
@@ -56,4 +60,8 @@ export {
     AddKasirAdmin,
     DetailsKasirAdmin,
     EditKasirAdmin,
+
+    AddTableAdmin,
+    EditTableAdmin,
+    TableAdmin
 }

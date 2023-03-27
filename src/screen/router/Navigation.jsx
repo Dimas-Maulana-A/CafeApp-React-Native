@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // Tabs Navigator
 import TabsBottomKasir from './Kasir/TabsBottom';
@@ -47,6 +46,9 @@ import {
   AddKasirAdmin,
   DetailsKasirAdmin,
   EditKasirAdmin,
+  TableAdmin,
+  AddTableAdmin,
+  EditTableAdmin,
 } from '../pages';
 
 const Stack = createNativeStackNavigator();
@@ -377,6 +379,30 @@ function StackNavigation() {
           component={EditKasirAdmin}
           options={{
             title: 'Kasir',
+          }}
+        />
+
+        <Stack.Screen
+          name="TableAdmin"
+          component={TableAdmin}
+          options={{
+            title: 'Table',
+          }}
+        />
+
+        <Stack.Screen
+          name="AddTableAdmin"
+          component={AddTableAdmin}
+          options={{
+            title: 'Table',
+          }}
+        />
+
+        <Stack.Screen
+          name="EditTableAdmin"
+          component={EditTableAdmin}
+          options={{
+            title: 'Table',
           }}
         />
       </Stack.Navigator>

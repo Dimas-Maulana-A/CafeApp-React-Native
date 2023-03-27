@@ -80,7 +80,7 @@ const AdminHomeScreen = () => {
           <Image source={Kasirs} alt="Trans Icon" style={styles.menuImage} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate('HistoryTransKasir')}>
+          onPress={() => navigation.navigate('TableAdmin')}>
           <Image source={Table} alt="Trans Icon" style={styles.menuImage} />
         </TouchableOpacity>
       </View>
