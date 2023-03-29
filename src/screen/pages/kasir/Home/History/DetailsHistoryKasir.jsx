@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
-import { auth, baseTransaksi } from '../../../../../utils';
+import {auth, baseTransaksi} from '../../../../../utils';
 import {
   Templates,
   Column,
   Rows,
   Space,
+  PrimaryButtons,
 } from '../../../../../components';
 
 const DetailsHistoryKasir = ({route}) => {
@@ -29,7 +30,7 @@ const DetailsHistoryKasir = ({route}) => {
       .then(result => {
         const data = result.data ? result.data.data : result.data;
         let date = new Date(data.tgl_transaksi);
-        let options = {year: 'numeric', month: 'long', day: 'numeric'}
+        let options = {year: 'numeric', month: 'long', day: 'numeric'};
         setDate(date.toLocaleDateString('en-EN', options));
         const transc = [];
         transc.push(data);
@@ -41,6 +42,18 @@ const DetailsHistoryKasir = ({route}) => {
           totalHarga += item.total_harga;
         });
         setTotalPrice(totalHarga);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const handleUpdateStatus = selectId => {
+    auth
+      .put(baseTransaksi + selectId)
+      .then(result => {
+        navigation.navigate('Kasir');
+        console.log('success');
       })
       .catch(err => {
         console.log(err);
@@ -114,6 +127,14 @@ const DetailsHistoryKasir = ({route}) => {
                 <Text>Total : {totalPrice}</Text>
               </Rows>
             </Column>
+            {item.status === 'on process' ? (
+              <PrimaryButtons
+                title={'Update'}
+                onPressed={() => handleUpdateStatus(item.id)}
+              />
+            ) : (
+              ''
+            )}
           </Column>
         </Templates>
       ))}

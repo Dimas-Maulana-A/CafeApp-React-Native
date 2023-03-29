@@ -6,7 +6,7 @@ import ReportKasir from './Profile/ReportKasir';
 
 import DetailsTranscOnProcessKasir from './Transc/DetailsTranscOnProcessKasir';
 
-import CreateTranscKasir from './Transc/CreateTranscKasir';
+import KasirTranscScreen from './KasirTranscScreen';
 
 import HistoryTransKasir from './Home/History/HistoryTransKasir';
 import DetailsHistoryKasir from './Home/History/DetailsHistoryKasir';
@@ -26,7 +26,7 @@ export {
   ProfileKasir,
   ChangePasswordKasir,
   ReportKasir,
-  CreateTranscKasir,
+  KasirTranscScreen,
   DetailsTranscOnProcessKasir,
   HistoryTransKasir,
   DetailsHistoryKasir,

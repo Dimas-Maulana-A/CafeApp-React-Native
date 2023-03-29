@@ -13,6 +13,14 @@ import {
   baseLogs,
 } from './base';
 
+import {
+  fsGetData,
+  fsPostData,
+  fsPutData,
+  fsDelData,
+  fsClearData,
+} from './fileSystem';
+
 export {
   auth,
   getItem,
@@ -29,4 +37,9 @@ export {
   baseDetails,
   baseReport,
   baseLogs,
+  fsGetData,
+  fsPostData,
+  fsPutData,
+  fsDelData,
+  fsClearData,
 };

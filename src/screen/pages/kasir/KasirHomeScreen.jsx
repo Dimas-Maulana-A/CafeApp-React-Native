@@ -93,7 +93,7 @@ const KasirHomeScreen = () => {
                   <TouchableOpacity
                     key={i}
                     onPress={() =>
-                      navigation.navigate('DetailsHistoryAdmin', {
+                      navigation.navigate('DetailsHistoryKasir', {
                         transcId: item.id,
                       })
                     }>
