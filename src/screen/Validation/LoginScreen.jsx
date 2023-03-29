@@ -51,7 +51,7 @@ const LoginScreen = () => {
           navigation('Admin');
         } else if (res.data.datas.role === 3) {
           navigation('Kasir');
-          await setItem(`@storage_details_${data.id}`, JSON.stringify({}));
+          // await setItem(`@storage_details_${data.id}`, JSON.stringify({}));
         }
       } catch (error) {
         if (error.response) {

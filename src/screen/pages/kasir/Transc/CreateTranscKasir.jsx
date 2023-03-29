@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import RNFS from 'react-native-fs';
 
 import {
   Rows,
@@ -19,12 +20,15 @@ import {
 } from '../../../../components';
 import {Buy} from '../../../../assets';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {auth, baseMenu, getItem} from '../../../../utils';
+import {auth, baseMenu, getItem, setItem} from '../../../../utils';
 
 const CreateTranscKasir = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [search, setSearch] = useState('');
   const [product, setProduct] = useState([]);
+  const [search, setSearch] = useState('');
+  const [itemId, setItemId] = useState();
+  const [amountItem, setAmountItem] = useState();
+  const [userId, setUserId] = useState('');
   const navigation = useNavigation();
   const focused = useIsFocused();
 
@@ -38,6 +42,8 @@ const CreateTranscKasir = () => {
       const local = JSON.parse(await getItem('@storage_data'));
       if (local === null) {
         navigation.navigate('Login');
+      } else {
+        setUserId(local.id);
       }
     } catch (error) {
       console.log(error);
@@ -47,14 +53,167 @@ const CreateTranscKasir = () => {
   const getProduct = () => {
     auth
       .get(baseMenu)
-      .then(result => {
+      .then(async result => {
         setProduct(result.data ? result.data.data : result.data);
-        console.log(result.data.data);
+        // console.log(result.data.data);
+
+        const file =
+          RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
+        RNFS.readFile(file, 'utf8')
+          .then(result => {
+            console.log(result);
+          })
+          .catch(err => {
+            console.log("json not found");
+          });
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  const createTrans = () => {
+    const file =
+      RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
+    try {
+      RNFS.readFile(file, 'utf8')
+        .then(content => {
+          let data_details = JSON.parse(content);
+
+          data_details.details.push({
+            id_menu: itemId,
+            total_barang: amountItem,
+          });
+
+          var datas = JSON.stringify(data_details);
+          const file =
+            RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
+
+          RNFS.writeFile(file, datas, 'utf8')
+            .then(result => {
+              console.log('data saved');
+            })
+            .catch(err => {
+              console.log('err :', err);
+            });
+        })
+        .catch(err => {
+          var data_details = {
+            details: [],
+          };
+
+          data_details.details.push({
+            id_menu: itemId,
+            total_barang: amountItem,
+          });
+
+          var json = JSON.stringify(data_details);
+          const file =
+            RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
+
+          RNFS.writeFile(file, json, 'utf8')
+            .then(result => {
+              console.log('data saved');
+            })
+            .catch(err => {
+              console.log('err :', err);
+            });
+        });
+      // if(err) throw err;
+      // try {
+      // let data_details = JSON.parse(content);
+
+      // data_details.details.push({
+      //   id_menu: itemId,
+      //   total_barang: amountItem,
+      // });
+
+      // var datas = JSON.stringify(data_details);
+
+      // RNFS.writeFile(file, datas, err => {
+      //   if (err) print(err);
+      //   else {
+      //     console.log('post data was successfuly');
+      //   }
+      // });
+      // } catch (error) {
+      //   var data_details = {
+      //     details: [],
+      //   };
+
+      //   data_details.details.push({
+      //     id_menu: itemId,
+      //     total_barang: amountItem,
+      //   });
+
+      //   var json = JSON.stringify(data_details);
+
+      //   RNFS.writeFile(file, json, 'utf8', err => {
+      //     if (err) print(err);
+      //     else {
+      //       console.log('post data was successfuly');
+      //     }
+      //   });
+      // }
+      // });
+    } catch (error) {
+      console.log(err);
+    }
+  };
+
+  // const createTrans = async () => {
+  //   try {
+  //     const trans = JSON.parse(await getItem(`@storage_details_${userId}`));
+  //     // console.log(trans);
+  //     if (trans === null) {
+  //       try {
+  //         const data_details = {
+  //           details: [],
+  //         };
+  //         data_details.details
+  //           .push({
+  // id_menu: itemId,
+  // total_barang: amountItem,
+  //           })
+  //           .then(result => {
+  //             console.log(result);
+  //           })
+  //           .catch(err => {
+  //             console.log('e :', err);
+  //           });
+  //         await setItem(
+  //           `@storage_details_${userId}`,
+  //           JSON.stringify(data_details),
+  //         );
+  //         // console.log(data_details);
+  //       } catch (error) {
+  //         console.log('error :', error);
+  //       }
+  //     } else if (trans !== null) {
+  //       let data_details = JSON.parse(
+  //         await getItem(`@storage_details_${userId}`),
+  //       );
+  //       data_details.details
+  //         .push({
+  //           id_menu: itemId,
+  //           total_barang: amountItem,
+  //         })
+  //         .then(result => {
+  //           console.log(result);
+  //         })
+  //         .catch(err => {
+  //           console.log('e :', err);
+  //         });
+  //       await setItem(
+  //         `@storage_details_${userId}`,
+  //         JSON.stringify(data_details),
+  //       );
+  //       console.log(data_details);
+  //     }
+  //   } catch (error) {
+  //     console.log('err :', error);
+  //   }
+  // };
 
   return (
     <View style={styles.Container}>
@@ -99,14 +258,13 @@ const CreateTranscKasir = () => {
                     <Image
                       source={{uri: baseMenu + 'image/' + item.image}}
                       style={styles.imageTrans}
-                      // resizeMode="contain"
                     />
                   </View>
                   <View>
                     <Rows
                       c_Style={{
                         justifyContent: 'space-between',
-                        alignItems: 'center'
+                        alignItems: 'center',
                       }}>
                       <Column
                         c_Style={{
@@ -125,6 +283,11 @@ const CreateTranscKasir = () => {
                         c_Style={{
                           justifyContent: 'center',
                         }}
+                        onPressed={() => {
+                          setItemId(item.id);
+                          console.log(item.id);
+                          setModalVisible(true);
+                        }}
                       />
                     </Rows>
                   </View>
@@ -135,10 +298,14 @@ const CreateTranscKasir = () => {
         </Templates>
       </ScrollView>
       <Modals visible={modalVisible} animated="fade" trans={true}>
-        <Text>Ini adalah modal!</Text>
+        <Text>Id Product : {itemId}</Text>
+        <Input Value={amountItem} on_Change={text => setAmountItem(text)} />
         <PrimaryButtons
-          title="Close"
-          onPressed={() => setModalVisible(false)}
+          title="Save"
+          onPressed={() => {
+            createTrans();
+            setModalVisible(false);
+          }}
         />
       </Modals>
     </View>

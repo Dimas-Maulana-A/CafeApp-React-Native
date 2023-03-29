@@ -2,7 +2,14 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
-import {getItem, removeItem, auth, baseKasir, baseLogs} from '../../../utils';
+import {
+  getItem,
+  removeItem,
+  auth,
+  baseKasir,
+  baseLogs,
+  clearItem,
+} from '../../../utils';
 import {ProfileBold, BugIcons} from '../../../assets';
 
 import {PrimaryButtons} from '../../../components';
@@ -40,7 +47,7 @@ const KasirProfileScreen = () => {
     auth
       .post(baseLogs, {
         kasir: userName,
-        role: datas.role
+        role: datas.role,
       })
       .then(result => {
         removeItem('@storage_data');

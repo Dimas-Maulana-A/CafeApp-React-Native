@@ -10,7 +10,7 @@ import React, {useEffect, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 import {Category, Menu, Kasirs, Table, Roles} from '../../../assets';
-import {Templates, Column, Rows} from '../../../components';
+import {Templates, Column, Rows, Space} from '../../../components';
 import {getItem, auth, baseKasir, baseTransaksi} from '../../../utils';
 
 const AdminHomeScreen = () => {
@@ -119,6 +119,7 @@ const AdminHomeScreen = () => {
                   </TouchableOpacity>
                 );
               })}
+              <Space Height={80} />
             {/* </Column> */}
           </Templates>
         </ScrollView>
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
   boxHistory: {
     flex: 1,
     // padding: '5%',
-    paddingBottom: 80,
+    // paddingBottom: 80,
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

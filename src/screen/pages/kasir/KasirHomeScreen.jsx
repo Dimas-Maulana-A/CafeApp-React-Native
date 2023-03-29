@@ -11,7 +11,7 @@ import {getItem, auth, baseKasir, baseTransaksi} from '../../../utils';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 import {Category, Menu, Trans1} from '../../../assets';
-import {Column, Rows} from '../../../components';
+import {Column, Rows, Templates, Space} from '../../../components';
 
 const KasirHomeScreen = () => {
   const [trans, setTrans] = useState([]);
@@ -81,33 +81,42 @@ const KasirHomeScreen = () => {
       <View style={styles.boxHistory}>
         <Text style={styles.textHistory}>Transaction</Text>
         <ScrollView>
-          {/* <Column> */}
-          {trans
-            .filter(item => item.status === 'on process')
-            .filter(item => item.id_kasir === userId)
-            .map((item, i) => {
-              let date = new Date(item.tgl_transaksi);
-              let options = {year: 'numeric', month: 'long', day: 'numeric'}
-              return (
-                <TouchableOpacity key={i} onPress={()=> navigation.navigate('DetailsTranscOnProcessKasir', {
-                  transcId: item.id
-                })}>
-                  <Rows c_Style={styles.listHistory}>
-                    <Column>
-                      <Text style={styles.headerHistory}>
-                        {item.nama_pelanggan}
-                      </Text>
-                      <Text>Date : {date.toLocaleDateString('en-EN', options)}</Text>
-                      <Text>
-                        Table Number : {item.meja_pelanggan.nomor_meja}
-                      </Text>
-                    </Column>
-                    <Text>{item.status}</Text>
-                  </Rows>
-                </TouchableOpacity>
-              );
-            })}
-          {/* </Column> */}
+          <Templates m_Horizontal={'5%'}>
+            {/* <Column> */}
+            {trans
+              .filter(item => item.status === 'on process')
+              .filter(item => item.id_kasir === userId)
+              .map((item, i) => {
+                let date = new Date(item.tgl_transaksi);
+                let options = {year: 'numeric', month: 'long', day: 'numeric'};
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() =>
+                      navigation.navigate('DetailsHistoryAdmin', {
+                        transcId: item.id,
+                      })
+                    }>
+                    <Rows c_Style={styles.listHistory}>
+                      <Column>
+                        <Text style={styles.headerHistory}>
+                          {item.nama_pelanggan}
+                        </Text>
+                        <Text>
+                          Date : {date.toLocaleDateString('en-EN', options)}
+                        </Text>
+                        <Text>
+                          Table Number : {item.meja_pelanggan.nomor_meja}
+                        </Text>
+                      </Column>
+                      <Text>{item.status}</Text>
+                    </Rows>
+                  </TouchableOpacity>
+                );
+              })}
+            <Space Height={80} />
+            {/* </Column> */}
+          </Templates>
         </ScrollView>
       </View>
     </View>
@@ -150,8 +159,8 @@ const styles = StyleSheet.create({
 
   boxHistory: {
     flex: 1,
-    padding: '5%',
-    paddingBottom: 80,
+    // padding: '5%',
+    // paddingBottom: 80,
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -165,10 +174,12 @@ const styles = StyleSheet.create({
   },
 
   textHistory: {
+    marginLeft: '5%',
+    marginTop: '5%',
     fontSize: 20,
     color: 'black',
     fontWeight: 'bold',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
 
   listHistory: {
