@@ -5,6 +5,7 @@ import ChangePasswordKasir from './Profile/ChangePasswordKasir';
 import ReportKasir from './Profile/ReportKasir';
 
 import DetailsTranscOnProcessKasir from './Transc/DetailsTranscOnProcessKasir';
+import DetailsTranscTrol from './Transc/DetailsTranscTrol';
 
 import KasirTranscScreen from './KasirTranscScreen';
 
@@ -28,6 +29,7 @@ export {
   ReportKasir,
   KasirTranscScreen,
   DetailsTranscOnProcessKasir,
+  DetailsTranscTrol,
   HistoryTransKasir,
   DetailsHistoryKasir,
   MenuKasir,

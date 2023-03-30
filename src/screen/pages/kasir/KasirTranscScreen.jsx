@@ -18,7 +18,7 @@ import {
   Space,
   PrimaryButtons,
 } from '../../../components';
-import {Buy} from '../../../assets';
+import {Buy, Buy2, Close} from '../../../assets';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {
   auth,
@@ -36,23 +36,48 @@ const KasirTranscScreen = () => {
   const [itemId, setItemId] = useState();
   const [amountItem, setAmountItem] = useState();
   const [userId, setUserId] = useState('');
+  const [troll, setTroll] = useState([]);
+  const [trollIcons, setTrollIcons] = useState(false)
   const navigation = useNavigation();
   const focused = useIsFocused();
 
   useEffect(() => {
-    localCheck();
+    funcMain();
     getProduct();
-    // fsClearData(userId);
+    fsClearData(userId)
   }, [focused]);
 
-  const localCheck = async () => {
+  const funcMain = async () => {
     try {
       const local = JSON.parse(await getItem('@storage_data'));
       if (local === null) {
         navigation.navigate('Login');
       } else {
         setUserId(local.id);
+        const user_id = local.id;
+        try {
+          const details = await fsGetData(user_id);
+          setTroll(details.details);
+          if(details.details !== null) {
+            setTrollIcons(true)
+          }else {
+            setTrollIcons(false)
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCheckTrol = async () => {
+    try {
+      const local = JSON.parse(await getItem('@storage_data'));
+      const details = await fsGetData(local.id);
+      console.log(details.details)
+      setTroll(details.details);
     } catch (error) {
       console.log(error);
     }
@@ -64,22 +89,6 @@ const KasirTranscScreen = () => {
       .then(async result => {
         setProduct(result.data ? result.data.data : result.data);
         console.log(await fsGetData(userId));
-        // await fsGetData(userId)
-        // .then(result=> {
-        //   console.log("data:",result)
-        // })
-        // .catch(err=> {
-        //   console.log(err)
-        // })
-        // const file =
-        //   RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
-        // RNFS.readFile(file, 'utf8')
-        //   .then(result => {
-        //     console.log(result);
-        //   })
-        //   .catch(err => {
-        //     console.log('json not found');
-        //   });
       })
       .catch(err => {
         console.log(err);
@@ -179,8 +188,13 @@ const KasirTranscScreen = () => {
     <View style={styles.Container}>
       <Rows c_Style={styles.HeaderContainer}>
         <Text style={styles.header}>Transaction</Text>
-        <TouchableOpacity>
-          <Image style={styles.headerImage} source={Buy} resizeMode="contain" />
+        <TouchableOpacity
+          onPress={() => navigation.navigate('DetailsTranscTrol')}>
+          <Image
+            style={styles.headerImage}
+            source={trollIcons ? Buy2 : Buy}
+            resizeMode="contain"
+          />
         </TouchableOpacity>
       </Rows>
       {/* <PrimaryButtons
@@ -257,14 +271,75 @@ const KasirTranscScreen = () => {
           <Space Height={80} />
         </Templates>
       </ScrollView>
-      <Modals visible={modalVisible} animated="fade" trans={true}>
-        <Text>Id Product : {itemId}</Text>
-        <Input Value={amountItem} on_Change={text => setAmountItem(text)} />
+
+      {/* Modals */}
+      <Modals
+        visible={modalVisible}
+        animated="fade"
+        trans={true}
+        c_Style={{
+          padding: 20,
+          borderRadius: 20,
+          shadowOffset: {width: 4, height: 4},
+          shadowColor: '#000',
+          shadowOpacity: 0.9,
+          shadowRadius: 2,
+          elevation: 5,
+        }}>
+        <Rows
+          c_Style={{
+            justifyContent: 'space-between',
+            width: '100%',
+          }}>
+          <Text
+            style={{
+              fontSize: 20,
+              color: 'black',
+            }}>
+            ID Product : {itemId}
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              setModalVisible(false);
+              setAmountItem();
+            }}>
+            <Image
+              source={Close}
+              resizeMode="contain"
+              style={{
+                height: 25,
+                width: 25,
+              }}
+            />
+          </TouchableOpacity>
+        </Rows>
+        <Space Height={20} />
+        <Input
+          c_Style={{
+            borderRadius: 20,
+            padding: 10,
+            fontSize: 18,
+          }}
+          keyType="numeric"
+          Value={amountItem}
+          on_Change={text => {
+            if (/^\d+$/.test(text) || text === '') {
+              setAmountItem(text);
+            }
+          }}
+          placeHolder="enter the number of products"
+        />
+        <Space Height={20} />
         <PrimaryButtons
+          c_Style={{
+            fontSize: 20,
+          }}
           title="Save"
           onPressed={() => {
             createTrans();
             setModalVisible(false);
+            handleCheckTrol();
+            setAmountItem();
           }}
         />
       </Modals>

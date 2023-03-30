@@ -6,7 +6,9 @@ import AddTrans from "./icons/AddTrans.png"
 import BugIcons from "./icons/BugIcons.png"
 import BugIconsLight from "./icons/BugIconsLight.png"
 import Buy from "./icons/Buy.png"
+import Buy2 from "./icons/Buy2.png"
 import Category from "./icons/Category.png"
+import Close from "./icons/Close.png"
 import DeleteLight from "./icons/DeleteLight.png"
 import EditLight from "./icons/EditLight.png"
 import HomeBold from "./icons/HomeBold.png"
@@ -35,7 +37,9 @@ export {
     BugIcons,
     BugIconsLight,
     Buy,
+    Buy2,
     Category,
+    Close,
     DeleteLight,
     EditLight,
     HomeBold,

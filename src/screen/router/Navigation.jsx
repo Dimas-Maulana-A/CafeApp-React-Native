@@ -15,6 +15,7 @@ import {
   ProfileKasir,
   ChangePasswordKasir,
   DetailsTranscOnProcessKasir,
+  DetailsTranscTrol,
   MenuKasir,
   AddMenuKasir,
   EditMenuKasir,
@@ -404,6 +405,14 @@ function StackNavigation() {
           options={{
             title: 'Table',
           }}
+        />
+
+        <Stack.Screen
+        name='DetailsTranscTrol'
+        component={DetailsTranscTrol}
+        options={{
+          title: 'Check Out'
+        }}
         />
       </Stack.Navigator>
     </NavigationContainer>

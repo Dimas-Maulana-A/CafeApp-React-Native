@@ -7,6 +7,7 @@ const Input = ({
   p_Vertical,
   p_Horizontal,
   placeHolder,
+  keyType,
   Value,
   on_Change,
   Secure,
@@ -22,6 +23,7 @@ const Input = ({
       <TextInput
         value={Value}
         onChangeText={on_Change}
+        keyboardType={keyType}
         style={[
           {
             paddingHorizontal: p_Horizontal,

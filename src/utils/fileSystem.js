@@ -11,7 +11,7 @@ const fsGetData = async id => {
 };
 
 const fsPostData = async(id, data) => {
-  const file = RNFS.DocumentDirectoryPath + `/.storage_details_${id}.json`;
+  const file = await RNFS.DocumentDirectoryPath + `/.storage_details_${id}.json`;
   await RNFS.writeFile(file, data, 'utf8')
     .then(result => {
       console.log('save success');
