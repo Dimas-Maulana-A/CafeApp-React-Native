@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import RNFS from 'react-native-fs';
 
 import {
   Rows,
@@ -20,14 +19,7 @@ import {
 } from '../../../components';
 import {Buy, Buy2, Close} from '../../../assets';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {
-  auth,
-  baseMenu,
-  fsClearData,
-  fsGetData,
-  fsPostData,
-  getItem,
-} from '../../../utils';
+import {auth, baseCheckout, baseMenu, getItem} from '../../../utils';
 
 const KasirTranscScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -36,48 +28,24 @@ const KasirTranscScreen = () => {
   const [itemId, setItemId] = useState();
   const [amountItem, setAmountItem] = useState();
   const [userId, setUserId] = useState('');
-  const [troll, setTroll] = useState([]);
-  const [trollIcons, setTrollIcons] = useState(false)
+  const [troll, setTroll] = useState(false);
   const navigation = useNavigation();
   const focused = useIsFocused();
 
   useEffect(() => {
-    funcMain();
+    getLocal();
     getProduct();
-    fsClearData(userId)
+    setTimeout(() => handleGetTroll(),200);
   }, [focused]);
 
-  const funcMain = async () => {
+  const getLocal = async () => {
     try {
       const local = JSON.parse(await getItem('@storage_data'));
       if (local === null) {
         navigation.navigate('Login');
       } else {
         setUserId(local.id);
-        const user_id = local.id;
-        try {
-          const details = await fsGetData(user_id);
-          setTroll(details.details);
-          if(details.details !== null) {
-            setTrollIcons(true)
-          }else {
-            setTrollIcons(false)
-          }
-        } catch (error) {
-          console.log(error);
-        }
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleCheckTrol = async () => {
-    try {
-      const local = JSON.parse(await getItem('@storage_data'));
-      const details = await fsGetData(local.id);
-      console.log(details.details)
-      setTroll(details.details);
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +56,22 @@ const KasirTranscScreen = () => {
       .get(baseMenu)
       .then(async result => {
         setProduct(result.data ? result.data.data : result.data);
-        console.log(await fsGetData(userId));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const handleGetTroll = () => {
+    auth
+      .get(baseCheckout + userId)
+      .then(result => {
+        console.log('err:', result.data.data[0]);
+        if (result.data.data[0] !== undefined) {
+          setTroll(true);
+        } else {
+          setTroll(false);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -97,88 +80,18 @@ const KasirTranscScreen = () => {
 
   const createTrans = async () => {
     try {
-      await fsGetData(userId)
-        .then(async content => {
-          let data_details = JSON.parse(content);
-          data_details.details.push({
-            fs_id: Date.now(),
-            id_menu: itemId,
-            total_barang: amountItem,
-          });
-          var datas = JSON.stringify(data_details);
-          await fsPostData(userId, datas)
-            .then(result => {
-              console.log('data saved');
-            })
-            .catch(err => {
-              console.log('err :', err);
-            });
+      auth
+        .post(baseCheckout, {
+          id_kasir: userId,
+          id_menu: itemId,
+          total_barang: amountItem,
         })
-        .catch(async err => {
-          var data_details = {
-            details: [],
-          };
-
-          data_details.details.push({
-            fs_id: Date.now(),
-            id_menu: itemId,
-            total_barang: amountItem,
-          });
-
-          var datas = JSON.stringify(data_details);
-          await fsPostData(userId, datas)
-            .then(result => {
-              console.log('data saved');
-            })
-            .catch(err => {
-              console.log('err :', err);
-            });
+        .then(result => {
+          console.log(result.data);
+        })
+        .catch(err => {
+          console.log(err);
         });
-      // RNFS.readFile(file, 'utf8')
-      //   .then(content => {
-      //     let data_details = JSON.parse(content);
-
-      // data_details.details.push({
-      //   fs_id: Date.now(),
-      //   id_menu: itemId,
-      //   total_barang: amountItem,
-      // });
-
-      // var datas = JSON.stringify(data_details);
-      //     const file =
-      //       RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
-
-      //     RNFS.writeFile(file, datas, 'utf8')
-      // .then(result => {
-      //   console.log('data saved');
-      // })
-      // .catch(err => {
-      //   console.log('err :', err);
-      // });
-      //   })
-      //   .catch(err => {
-      // var data_details = {
-      //   details: [],
-      // };
-
-      // data_details.details.push({
-      //   fs_id: Date.now(),
-      //   id_menu: itemId,
-      //   total_barang: amountItem,
-      // });
-
-      // var json = JSON.stringify(data_details);
-      // const file =
-      //   RNFS.DocumentDirectoryPath + `/.storage_details_${userId}.json`;
-
-      // RNFS.writeFile(file, json, 'utf8')
-      //   .then(result => {
-      //     console.log('data saved');
-      //   })
-      //   .catch(err => {
-      //     console.log('err :', err);
-      //   });
-      //   });
     } catch (error) {
       console.log(error);
     }
@@ -189,18 +102,18 @@ const KasirTranscScreen = () => {
       <Rows c_Style={styles.HeaderContainer}>
         <Text style={styles.header}>Transaction</Text>
         <TouchableOpacity
-          onPress={() => navigation.navigate('DetailsTranscTrol')}>
+          onPress={() =>
+            navigation.navigate('DetailsTranscTrol', {
+              user_id: userId,
+            })
+          }>
           <Image
             style={styles.headerImage}
-            source={trollIcons ? Buy2 : Buy}
+            source={troll ? Buy2 : Buy}
             resizeMode="contain"
           />
         </TouchableOpacity>
       </Rows>
-      {/* <PrimaryButtons
-        title="Open Modal"
-        onPressed={() => setModalVisible(true)}
-      /> */}
       <ScrollView>
         <Templates m_Horizontal={'5%'} m_Vertical={'1%'}>
           <Input
@@ -338,8 +251,8 @@ const KasirTranscScreen = () => {
           onPressed={() => {
             createTrans();
             setModalVisible(false);
-            handleCheckTrol();
-            setAmountItem();
+            setTimeout(() => handleGetTroll(), 200);
+            setTimeout(() => setAmountItem(), 1000);
           }}
         />
       </Modals>

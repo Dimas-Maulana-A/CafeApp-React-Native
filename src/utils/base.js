@@ -13,6 +13,7 @@ const baseTransaksi = `${Config.API_URL}transaksi/`
 const baseDetails = `${Config.API_URL}details/`
 const baseReport = `${Config.API_URL}report/`
 const baseLogs = `${Config.API_URL}logs/`
+const baseCheckout = `${Config.API_URL}checkout/`
 
 export {
     baseLogin,
@@ -24,5 +25,6 @@ export {
     baseTransaksi,
     baseDetails,
     baseReport,
-    baseLogs
+    baseLogs,
+    baseCheckout,
 }
